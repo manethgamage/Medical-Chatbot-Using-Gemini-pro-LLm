@@ -10,11 +10,11 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 
 app = Flask(__name__)
 
-os.environ['PINECONE_API_KEY'] = '900597d2-8e82-4bb0-9f45-c58ff809dade'
+os.environ['PINECONE_API_KEY'] = 'api key'
 
 index_name = "medical-bot"
 
-embeddings = GooglePalmEmbeddings(google_api_key='AIzaSyC14roYzDCvA_MNB0m1Mfc6vr74UO6yr74')
+embeddings = GooglePalmEmbeddings(google_api_key='api key')
 
 vectorstore = PineconeVectorStore(index_name=index_name, embedding=embeddings)
 
@@ -23,7 +23,7 @@ docsearch=Pinecone.from_existing_index(index_name, embeddings)
 PROMPT=PromptTemplate(template=prompt_template, input_variables=["context", "question"])
 chain_type_kwargs={"prompt": PROMPT}
 
-llm = ChatGoogleGenerativeAI(google_api_key="AIzaSyCMOSfEQv4qpq21bIe9RGOYctSYYQfMp8Q",model="gemini-pro", temperature=0.8)
+llm = ChatGoogleGenerativeAI(google_api_key="api key",model="gemini-pro", temperature=0.8)
 
 
 qa=RetrievalQA.from_chain_type(
